@@ -7,7 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
-export default function EditUser() {
+export default function  EditUser() {
   const navigate = useNavigate();
 
   const { id } = useParams()
@@ -19,13 +19,14 @@ export default function EditUser() {
 
   useEffect(()=>{
     fetchProduct()
-  })
+  },[])
 
   const fetchProduct = async () => {
     await axios.get(`http://localhost:8000/api/products/${id}`).then(({data})=>{
-      const { title, description } = data.product
+      const { title, description, image } = data.product
       setTitle(title)
       setDescription(description)
+      setImage(image)
     }).catch(({response:{data}})=>{
       Swal.fire({
         text:data.message,
@@ -98,7 +99,7 @@ export default function EditUser() {
                       <Col>
                         <Form.Group controlId="Name">
                             <Form.Label>Title</Form.Label>
-                            <Form.Control type="text" value={title} onChange={(event)=>{
+                            <Form.Control type="text" value={title} onChange={(event )=>{
                               setTitle(event.target.value)
                             }}/>
                         </Form.Group>
@@ -113,6 +114,11 @@ export default function EditUser() {
                             }}/>
                         </Form.Group>
                       </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <img className="card-img-top" width="150px" alt='' src={`http://localhost:8000/storage/product/image/${image}`}/>
+                    </Col>
                   </Row>
                   <Row>
                     <Col>

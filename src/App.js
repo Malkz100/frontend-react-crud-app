@@ -11,6 +11,7 @@ import { BrowserRouter as Router , Routes, Route, Link } from "react-router-dom"
 import EditProduct from "./components/product/edit.component";
 import ProductList from "./components/product/list.component";
 import CreateProduct from "./components/product/create.component";
+import ShowProduct from "./components/product/show.component";
 
 function App() {
   return (<Router>
@@ -28,6 +29,7 @@ function App() {
           <Routes>
             <Route path="/product/create" element={<CreateProduct />} />
             <Route path="/product/edit/:id" element={<EditProduct />} />
+            <Route path="/product/show/:id" element={<ShowProduct />} />
             <Route exact path='/' element={<ProductList />} />
           </Routes>
         </Col>

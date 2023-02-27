@@ -10,7 +10,7 @@ export default function List() {
 
     useEffect(()=>{
         fetchProducts() 
-    })
+    },[])
 
     const fetchProducts = async () => {
         await axios.get(`http://localhost:8000/api/products`).then(({data})=>{
@@ -80,6 +80,9 @@ export default function List() {
                                                     <img width="50px" alt='' src={`http://localhost:8000/storage/product/image/${row.image}`} />
                                                 </td>
                                                 <td>
+                                                    <Link to={`/product/show/${row.id}`} className='btn btn-primary'>
+                                                        Show
+                                                    </Link>
                                                     <Link to={`/product/edit/${row.id}`} className='btn btn-success me-2'>
                                                         Edit
                                                     </Link>
